@@ -18,4 +18,12 @@ class VehicleInUse {
 	boolean  status   //是否归还
 	Date returnTime  //归还时间
 	String returnRecordMan  //归还记录人
+	
+	double receiveMile   //接车里程数
+	double returnMile    //交车里程数
+	
+	DynImage  receivePic //接车里程数照片
+	DynImage  returnPic  //交车里程数照片
+	
+	
 }

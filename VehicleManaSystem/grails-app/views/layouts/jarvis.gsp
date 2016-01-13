@@ -111,7 +111,8 @@
 					<li class="treeview"><a href="#"><i class="fa fa-car"></i>
 							<span>车辆管理</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="list">车辆档案管理</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="manaBuy" action="list">购入车辆档案管理</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="list">租赁车辆档案管理</g:link></li>
 							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listApprove">车辆报废</g:link></li>
 							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">车辆转让</g:link></li>
 				            <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">年检登记</g:link></li>
@@ -174,7 +175,6 @@
 							<span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">							
 				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="category">用户管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="gasType">车辆来源管理</g:link></li>				            
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					

@@ -1,8 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
- table{ text-align:center;}
-thead tr th{ text-align:center;}
-thead tr{ background-color: #3C8DBD; color:white}
 .alink a{ color: white;}
 .message{color:red; font-weight:bold;}
 .list-page{
