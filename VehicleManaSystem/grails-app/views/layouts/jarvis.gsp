@@ -4,7 +4,7 @@
 <r:layoutResources />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>中国石油浙江销售分公司经营分析系统</title>
+<title>公车管理系统</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -54,8 +54,8 @@
 		<header class="main-header">
             <!-- Logo -->
 			<a href="" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>销售</b>分析</span> <!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>浙江</b>销售分析系统</span>
+				<span class="logo-mini"><b></b></span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><b></b>公车管理系统</span>
 			</a>
 			
 			<!-- Header Navbar -->
@@ -77,9 +77,9 @@
             </a>
             <ul class="dropdown-menu" id="dropdown-menu"> 
               <li class="user-header">
-                <p>
+                <p><%--
                                                             中国石油浙江销售分公司
-                  <small>经营分析系统</small>
+                  --%><small>经营分析系统</small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -108,104 +108,76 @@
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>					
 					<!-- 一个导航链接开始 -->
-					<li class="treeview"><a href="#"><i class="fa fa-th-list"></i>
-							<span>台账</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"><a href="#"><i class="fa fa-car"></i>
+							<span>车辆管理</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="list">销售台账</g:link></li>
-							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listApprove">台账审批</g:link></li>
-							<sec:ifAnyGranted roles="ROLE_ADMIN">
-							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">关闭台账账期</g:link></li>
-				            <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">开启台账账期</g:link></li>
-							</sec:ifAnyGranted>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="list">车辆档案管理</g:link></li>
+							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listApprove">车辆报废</g:link></li>
+							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">车辆转让</g:link></li>
+				            <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">年检登记</g:link></li>
+							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">年检到期提醒</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<li class="treeview"><a href="#"><i class="fa  fa-users"></i>
-							<span>客存</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"><a href="#"><i class="fa  fa-map"></i>
+							<span>车辆使用</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="list">提货单</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="listApprove">提货单审批</g:link></li>
-				            <sec:ifAnyGranted roles="ROLE_ADMIN">
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="changeFMstatusClose">关闭客存账期</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="changeFMstatusOpen">开启客存账期</g:link></li>
-				            </sec:ifAnyGranted>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="list">登记出借车辆</g:link></li>
+				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="listApprove">车辆归还登记</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<li class="treeview"><a href="#"><i class="fa  fa-upload"></i>
-							<span>数据上传</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"><a href="#"><i class="fa  fa-gear (alias)"></i>
+							<span>准驾证管理</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="excelUpload" action="createSalesOrder">销售数据上传</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">提货数据上传</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="excelUpload" action="createSalesOrder">司机档案管理</g:link></li>
+				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证核发</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证延期</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证吊销</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<li class="treeview"><a href="#"><i class="fa  fa-warning (alias)"></i>
-							<span>警告</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"><a href="#"><i class="fa  fa-hand-stop-o (alias)"></i>
+							<span>车辆维保登记</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule">警告规则</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRuleToBranchCustomer">设置客户警告</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule" action="listBaseStockWarning">保底客存警告</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule" action="listDaysStockWarning">超期未提油警告</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule" action="listDaysSalesOrderWarning">超期无订单警告</g:link></li>       
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule">常规保养</g:link></li>
+			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRuleToBranchCustomer">报修登记</g:link></li>
+			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule" action="listBaseStockWarning">送修登记</g:link></li>      
 						</ul>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<li class="treeview"><a href="#"><i class="fa fa-user"></i>
-							<span>客户</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"><a href="#"><i class="fa fa-ambulance"></i>
+							<span>车险理赔</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listNewCustomerCount">新客户数量</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerVisting" action="list">客户回访记录</g:link></li>
-			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customer">客户管理</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customer" action="listApprove">客户管理审批</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listNewCustomerCount">登记车辆投保</g:link></li>
+			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerVisting" action="list">投保续保提醒</g:link></li>
+			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customer">车辆出险理赔</g:link></li>
+			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customer">车辆事故</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<sec:ifAnyGranted roles="ROLE_ADMIN">
 					<li class="treeview"><a href="#"><i class="fa fa-share"></i>
-							<span>分公司管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+							<span>行车违章</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">												          
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branch">分公司管理</g:link></li>
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branchGroup">分公司组管理</g:link></li>
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="sales">客户经理管理</g:link></li>
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="user">用户管理</g:link></li>				            
+					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branch">车辆违章登记</g:link></li>
+					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branchGroup">违章提醒</g:link></li>            
 						</ul></li>
-						</sec:ifAnyGranted>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
-					<sec:ifAnyGranted roles="ROLE_ADMIN">
 					<li class="treeview"><a href="#"><i class="fa fa-asterisk"></i>
-							<span>油品管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+							<span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">							
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="category">油品品种管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="gasType">油品品号管理</g:link></li>				            
+				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="category">用户管理</g:link></li>
+				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="gasType">车辆来源管理</g:link></li>				            
 						</ul></li>
-						</sec:ifAnyGranted>
 					<!-- 一个导航链接结束 -->
 					
-					<!-- 一个导航链接开始 -->
-					<sec:ifAnyGranted roles="ROLE_ADMIN">
-					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-							<span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">	
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerType">销售类别管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerTypeLevel2">机构类型管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerTypeLevel3">工业分类管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salingType">销售环节</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="price">到位价管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerVistingType">回访方式设置</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="thidrFactor">影响因素记录</g:link></li>  
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="thidrFactorType">影响因素设置</g:link></li>  
-						</ul></li>
-						</sec:ifAnyGranted>
-					<!-- 一个导航链接结束 -->
-						
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
