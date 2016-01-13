@@ -174,7 +174,7 @@
 							<span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">							
 				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="category">用户管理</g:link></li>
-				                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="gasType">车辆来源管理</g:link></li>				            
+				                			            
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					

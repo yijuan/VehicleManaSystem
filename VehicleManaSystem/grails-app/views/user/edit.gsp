@@ -1,14 +1,30 @@
 <%@ page import="com.surelution.vms.User" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-		<title><g:message code="default.edit.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#edit-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
+<head>
+	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
+	<title><g:message code="default.edit.label" args="[entityName]" /></title>
+</head>
+<body>
+	<div class="modal-header">
+		<p>标题</p>
+	</div>
+	<div class="modal-body" style="margin-left:100px;">
+     	<g:form method="post" >
+			<g:hiddenField name="id" value="${userInstance?.id}" />
+			<g:hiddenField name="version" value="${userInstance?.version}" />
+			<fieldset class="form">
+				<g:render template="form"/>
+			</fieldset>
+			<fieldset class="buttons">
+			<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+			</fieldset>
+		</g:form>
+    </div>
+    <div class="modal-footer nav" role="navigation">
+       
+    </div>
+		<%--<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
@@ -39,5 +55,5 @@
 				</fieldset>
 			</g:form>
 		</div>
-	</body>
+	--%></body>
 </html>
