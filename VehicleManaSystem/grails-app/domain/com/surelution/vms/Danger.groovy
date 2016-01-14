@@ -11,7 +11,7 @@ class Danger {
     }
 	
 	Date dangerDate //出险时间
-	Vdriver driver   //驾驶员信息
+    DrivingPermit drivingPermit
 	Insure insure    //车辆保险信息
 	String result    //出险后果，责任
 }

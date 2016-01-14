@@ -16,7 +16,7 @@ class RentVehicle extends VehicleSource {
 	Date rentTo    //租赁时长
 	String manufacturer //租赁厂家
 	String rentMan //租赁人
-	String rentPhoto //租赁凭证
+	DynImage rentPhoto //租赁凭证
 	String title     //来源名称
 	Date   gotDate        //租入日期
 }

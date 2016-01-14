@@ -11,7 +11,7 @@ class VehicleInUse {
     static constraints = {
     }
 	
-	Vdriver driver   //驾驶员
+	DrivingPermit drivingPermit
 	Vehicle vehicle  //车辆信息
 	Date borrowTime  //借出时间
 	String borrowRecordMan // 借出记录人
