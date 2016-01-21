@@ -1,6 +1,9 @@
 package com.surelution.vms
 
+import grails.plugin.springsecurity.SpringSecurityService;
+
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.security.core.context.SecurityContextHolder;
 
 class UserController {
 
@@ -13,12 +16,13 @@ class UserController {
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [userInstanceList: User.list(params), userInstanceTotal: User.count()]
+		//list方法将数据库中方法全部取出来，count方法返回数据库中数据记录的条数
     }
 
     def create() {
         [userInstance: new User(params)]
     }
-
+	
     def save() {
         def userInstance = new User(params)
         if (!userInstance.save(flush: true)) {
@@ -26,8 +30,8 @@ class UserController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'),""])
+        redirect(action: "list", id: userInstance.id)
     }
 
     def show(Long id) {
@@ -73,12 +77,12 @@ class UserController {
         userInstance.properties = params
 
         if (!userInstance.save(flush: true)) {
-            render(view: "edit", model: [userInstance: userInstance])
+            redirect(action:'list')
             return
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        redirect(action: "list")
     }
 
     def delete(Long id) {
@@ -99,4 +103,33 @@ class UserController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def updatepassword(){
+		
+	}
+	
+	def changePassWord(){
+		def newPw1 = params.newPw1
+		def newPw2 = params.newPw2
+		if(newPw1 != newPw2) {
+			flash.message="两次输入的密码不一致，请重新操作"
+			redirect(action:'list')
+			return
+		}
+		def user = SpringSecurityService.getCurrentUser()
+		user = User.findByUsername(user.username)
+		if(user) {
+			if(SpringSecurityService.passwordEncoder.isPasswordValid(user.password, params.password, null)) {
+				user.password = newPw1
+				user.save(flush:true)
+				flash.message="密码修改成功"	
+				redirect(action:'list')
+				return
+			} else {	
+			flash.message="您的原始密码输入错误！"
+				redirect(action:'list')
+				return
+			}
+		}
+	}
 }

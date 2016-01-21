@@ -43,24 +43,27 @@ class ManaBuyController {
 		   }
 		   
 	   }
-	   
 	   println vehicleResult
 	   [vehicleResult:vehicleResult]
 	}
 	
 	//添加购入车辆
 	def saveVehicle(){
-		//def title = params.title
-		def recordTime = params.date('recordTime','yyyy.MM.dd')
+		def recordTime = new Date()
+		def insureEndDate = params.date('insureEndDate','yyyy.MM.dd')
 		def vOwner = params.vOwner
 		def vehicleType = params.vehicleType
 		def price = params.double('price')
 		def vehicleModel = params.vehicleModel
 		def vehicleNO = params.vehicleNO
+		def vehicleBrand = params.vehicleBrand
 		def gotDate = params.date('gotDate','yyyy.MM.dd')
 		def manufacturer = params.manufacturer
 		def buyMan = params.buyMan
-		def status = params.status
+		def status = 'NORMAL'
+		def inuse = false
+		def enabled = params.enabled
+		
 		
 		def image = new DynImage()
 		photo =  request.getFile("billPhoto")
@@ -74,7 +77,7 @@ class ManaBuyController {
 		vehicleSource.title = "购买"
 		vehicleSource.billPhoto = image
 		
-		println vehicleSource.errors
+		//println vehicleSource.errors
 		vehicleSource.save(flush:true)
 		
 		def image1 = new DynImage()
@@ -89,9 +92,20 @@ class ManaBuyController {
 		vehicle.price = price
 		vehicle.vehicleModel = vehicleModel
 		vehicle.vehicleNO = vehicleNO
-		vehicle.status = status
+		vehicle.vehicleBrand = vehicleBrand
+		vehicle.statu = status
+		vehicle.insureEndDate = insureEndDate
 		vehicle.vsource = vehicleSource
-		
+		/*if(inuse.equals('1')){
+			vehicle.inuse=true   //1表示true 正在使用
+		}else{
+		    vehicle.inuse=false
+		}*/
+		if(enabled.equals('1')){
+			vehicle.enabled = true
+		}else{
+		    vehicle.enabled = false   //1表示true 有使用权
+		}
 		vehicle.vehiclePhoto = image1
 		vehicle.save(flush:true)
 		redirect(action:'list')
@@ -110,10 +124,50 @@ class ManaBuyController {
 		
 	}
 	
+	def showTansfer(){}
+	
+	//车辆转让
+	def vehicleTransfer(){
+		def vehicleId = params.vehicleId
+		def transferTime = params.date('transferTime','yyyy.MM.dd')
+		def tansferMan = params.tansferMan
+		def transferReason = params.transferReason
+		def money = params.double('money')
+		def contractNO = params.int('contractNO')
+		def transfer = new VehicleTransfer()
+		transfer.isTransfer = true
+		transfer.transferDate = transferTime
+		transfer.transferMan = tansferMan
+		transfer.transferReason = transferReason
+		transfer.money = money
+		transfer.contractNO = contractNO
+		transfer.save(flush:true)
+		
+		def vehicle = Vehicle.get(vehicleId)
+		vehicle.transfer = transfer
+		vehicle.save(flush:true)
+		redirect(action:'list')
+	}
+	
+	//车辆报废
+	def vehicleScrapped(long id){                   
+		def scrapped = new VehicleScrapped()
+		scrapped.isScrapped = true
+		scrapped.scrapTime = new Date()
+		scrapped.save(flush:true)
+		
+		def vehicle = Vehicle.get(id)
+		vehicle.scrapped = scrapped
+		vehicle.save(flush:true)
+		redirect(action:'list')
+	}
+	
+	
 	def showVehicleSource(long id){
 		def vehicleSource = Vehicle.get(id)
 		[vehicleSource:vehicleSource]
 	}
+	
 	
 	//保存图片的方法
 	def static savePic(DynImage image){

@@ -2,58 +2,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-	<title><g:message code="default.edit.label" args="[entityName]" /></title>
+<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
+<title><g:message code="default.edit.label" args="[entityName]" /></title>
+<script src="${resource(dir:'js',file:'bootstrap.js') }"></script>
+<style>
+	.move{margin-left:320px;}
+</style>	
 </head>
+
 <body>
-	<div class="modal-header">
-		<p>标题</p>
+	<div class="modal-header" style="height:20px; border:0px solid #000; text-align:center; font-size:20px; font-weight:bold;">用户编辑</div>
+	
+	<g:form method="post" >
+	<div class="modal-body" style="margin-top:30px;">
+	
+		<g:hiddenField name="id" value="${userInstance?.id}" />
+		<g:hiddenField name="version" value="${userInstance?.version}" />
+		<fieldset class="form">
+			<g:render template="form"/>
+		</fieldset>
+		<br>
 	</div>
-	<div class="modal-body" style="margin-left:100px;">
-     	<g:form method="post" >
-			<g:hiddenField name="id" value="${userInstance?.id}" />
-			<g:hiddenField name="version" value="${userInstance?.version}" />
-			<fieldset class="form">
-				<g:render template="form"/>
-			</fieldset>
-			<fieldset class="buttons">
-			<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-			</fieldset>
-		</g:form>
-    </div>
-    <div class="modal-footer nav" role="navigation">
-       
-    </div>
-		<%--<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="edit-user" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${userInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${userInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form method="post" >
-				<g:hiddenField name="id" value="${userInstance?.id}" />
-				<g:hiddenField name="version" value="${userInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-		</div>
-	--%></body>
+	<div class="modal-footer">
+	<fieldset class="buttons">
+		<g:actionSubmit class="save move btn btn-default" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+			
+		<input type="button" class="btn btn-default" data-dismiss="modal" value="取消" />
+		 
+		</fieldset>
+	</div>
+	
+	</g:form>
+
+</body>
 </html>

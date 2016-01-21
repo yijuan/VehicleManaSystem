@@ -54,7 +54,7 @@
 	                            </dd>
 	                        </dl>
 						   </div>
-						<div class="row">
+						<%--<div class="row">
                            <div class="col-md-8">
                                <div class="fieldcontain">
 				                  <dl class="dl-horizontal" style="margin-left:-80px;">
@@ -95,7 +95,7 @@
 					</div>
 				    </div>
 				   </div>
-					</fieldset>
+					--%></fieldset>
 					
 					 <fieldset class="buttons">
 						<g:submitButton name="search" class="search btn btn-primary" value="${message(code: 'default.button.search.label', default: 'Search')}" />
@@ -106,55 +106,78 @@
 					
 			<h3>车辆列表</h3>
 			
+			<div>
 			<table class="table table-bordered  table-striped">
 			    <thead>
 				  <tr>
+				    <th><g:message code="label.vehicle.vehicleNO" default="vehicleNO"/></th>
+				    <th><g:message code="label.vehicle.vehicleType" default="vehicleType"/></th>
+				    <th><g:message code="label.vehicle.vehicleBrand" default="vehicleBrand"/></th>
+				    <th><g:message code="label.vehicle.vehicleModel" default="vehicleModel"/></th>
+				     <th><g:message code="label.vehicle.price" default="price"/></th>
+				    <th><g:message code="label.vehicle.insureEndDate" default="insureEndDate"/></th>
+				     <th><g:message code="label.vehicle.inuse" default="inuse"/></th>
 				    <th><g:message code="label.vehicle.vOwner" default="vOwner"/></th>
                     <th><g:message code="label.vehicle.recordTime" default="recordTime"/></th>
-                    <th><g:message code="label.vehicle.vehicleType" default="vehicleType"/></th>
-                    <th><g:message code="label.vehicle.price" default="price"/></th>
-                    <th><g:message code="label.vehicle.vehicleModel" default="vehicleModel"/></th>
-                    <th><g:message code="label.vehicle.vehicleNO" default="vehicleNO"/></th>
-                   <%-- <th><g:message code="label.vehicle.vehiclePtot" default="vehiclePhoto"/></th>--%>
-                    <th><g:message code="label.vehicle.manufacturer" default="manufacturer"/></th>
-                    <th><g:message code="label.vehicle.buyMan" default="buyMan"/></th>
-                    <th><g:message code="label.vehicle.title" default="title"/></th>
-                    <th><g:message code="label.vehicle.gotDate" default="gotDate"/></th>
-                    <th><g:message code="label.vehicle.rentTo" default="rentTo"/></th>
-                    <th><g:message code="label.vehicle.rentMan" default="rentMan"/></th>
+                     <th><g:message code="label.vehicle.statu" default="statu"/></th>
+                    <th><g:message code="label.vehicle.enabled" default="enabled"/></th>
+                    <th>操作</th>
                   </tr>
                  </thead>
                <tbody>
                 
                  <g:each in="${vehicleResult }" var="vehicle">
                    <tr>
-                      <td><g:link action="showVehicleSource" id="${vehicle?.id}">${vehicle.vOwner}</g:link></td>
-                      <td><g:formatDate date="${vehicle.recordTime}" format="yyyy-MM-dd"/></td>
-                     
+                      <td><g:link action="showVehicleSource" id="${vehicle?.id}">${vehicle.vehicleNO}</g:link></td>
                       <td>${vehicle.vehicleType}</td>
-                      <td>${vehicle.price}</td>
+                      <td>${vehicle.vehicleBrand}</td>
                       <td>${vehicle.vehicleModel}</td>
-                      <td>${vehicle.vehicleNO}</td>
-                      <g:if test="${vehicle.vsource.title=='购买' }">
-                      <td>${vehicle.vsource.manufacturer}</td>
-                      <td>${vehicle.vsource.buyMan}</td>
-                      <td>${vehicle.vsource.title }</td>
-                      <td><g:formatDate date="${vehicle.vsource.gotDate }" format="yyyy-MM-dd"/></td>
-                      </g:if>
-                      
-                      <g:elseif test="${vehicle.vsource.title=='租赁' }">
-                      <td>${vehicle.vsource.manufacturer}</td>
-                      <td>${vehicle.vsource.rentMan}</td>
-                      <td>${vehicle.vsource.title }</td>
-                      <td><g:formatDate date="${vehicle.vsource.gotDate }" format="yyyy-MM-dd"/></td>
-                      <td><g:formatDate date="${vehicle.vsource.rentTo }" format="yyyy-MM-dd"/></td>
-                      </g:elseif>
+                       <td>${vehicle.price}</td>
+                       <td><g:formatDate date="${vehicle.insureEndDate}" format="yyyy-MM-dd"/></td>
+                        <td><g:if test="${vehicle.inuse==true}">已借出</g:if>
+                        <g:else>可借用</g:else>
+                        </td>
+                      <td>${vehicle.vOwner}</td>
+                      <td><g:formatDate date="${vehicle.recordTime}" format="yyyy-MM-dd"/></td>
+                       <td>${vehicle.statu}</td>
+                      <td><g:if test="${vehicle.enabled==true}">是</g:if>
+                          <g:else>否</g:else>
+                      </td>
+                      <td>
+                        <g:if test="${vehicle.vsource.title.equals('购买')}">
+                           <g:if test="${vehicle?.transfer?.isTransfer==true}">
+                               <span class="btn btn-default btn-sm" style="cursor:auto;">该车辆已经转让</span>
+                           </g:if>
+                          <g:elseif test="${vehicle?.scrapped?.isScrapped==true}">
+                              <span class="btn btn-default btn-sm" style="cursor:auto;">该车辆已经报废</span>
+                          </g:elseif>
+                           <g:else>
+                              <g:link action="showTansfer"  id="${vehicle.id}" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#showTransfer" >转让</g:link>
+                              <a href="${createLink(action:'vehicleScrapped',controller:'manaBuy',id:vehicle.id)}" class="btn btn-primary btn-sm">报废</a>
+                           </g:else>
+                        </g:if>
+                        <g:else>
+                           <g:if test="${vehicle?.stopRent?.isStopRent==true}">
+                               <span class="btn btn-default btn-sm" style="cursor:auto;">该车已经停止租赁</span>
+                           </g:if>
+                           <g:else>
+                               <a href="${createLink(action:'vehicleStopRent',controller:'manaRent',id:vehicle.id)}" class="btn btn-primary btn-sm">停止租赁</a>
+                           </g:else>
+                        </g:else>
+                      </td>
                    </tr>
-                   </g:each>
-                 
+                 </g:each>
                </tbody>
 			</table>
-				</section>
+			</div>
+			<div class="modal fade" id="showTransfer" role="dialog">
+                                 <div class="modal-dialog">
+                                     <!-- Modal content-->
+                                    <div class="modal-content"> 
+                                    </div>
+                                 </div>
+                             </div>	
+		</section>
 		</div>
 </body>
 </html>

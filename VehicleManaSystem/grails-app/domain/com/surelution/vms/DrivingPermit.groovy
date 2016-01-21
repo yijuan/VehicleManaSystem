@@ -9,11 +9,14 @@ package com.surelution.vms
 class DrivingPermit {
 	
     static constraints = {
+		delayTo nullable:true;
+		revokeDate nullable:true;
+		
     }
 	
 	String dpNO         //准驾证编号
 	Date trainingDate   //培训日期
-	Double  score          //考核成绩
+	int  score          //考核成绩
 	boolean delay       //是否延期
 	boolean licensRevoked  //是否吊销
 	Date delayTo       //延期时长
@@ -23,10 +26,16 @@ class DrivingPermit {
 	String name  //驾驶员姓名
 	String description   //描述
 	int age    //年龄
-	String sex   //性别
-	
+	Sex sex   //性别
+	enum Sex{
+		man,woman
+	}
 	String dlicense  //驾驶证
 	int  borrowNum   //借车次数
 	String dlligle   //违章情况
 	
+	/*Date  validityDate     //有效年限*/
+	Date  issueDate       //核发日期
+	
+	boolean enabled   //是否可以使用
 }

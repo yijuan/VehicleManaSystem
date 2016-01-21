@@ -8,9 +8,9 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
+	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'logo.png')}" type="image/x-icon">
+		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'logo.png')}">
+		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'logo.png')}">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -83,7 +83,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                 <g:link controller="user" action="showChangePw" class="btn btn-default btn-flat">修改密码</g:link>
+                 <g:link controller="user" action="updatepassword" class="btn btn-default btn-flat">修改密码</g:link>
                 </div>
                 
                 <div class="pull-right">
@@ -110,8 +110,8 @@
 					<li class="treeview"><a href="#"><i class="fa  fa-map"></i>
 							<span>车辆使用</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="list">借车</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="listApprove">还车</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="vehicleUse" action="show">借车</g:link></li>
+				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="vehicleUse" action="returnVehicle">还车</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
@@ -119,7 +119,7 @@
 					<li class="treeview"><a href="#"><i class="fa  fa-hand-stop-o (alias)"></i>
 							<span>车辆维保</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule">常规保养</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="ManaMantain" action="showMantain">常规保养</g:link></li>
 			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRuleToBranchCustomer">报修登记</g:link></li>
 			                <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="warningRule" action="listBaseStockWarning">送修登记</g:link></li> 
 			               <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">维修完结</g:link></li>     
@@ -145,8 +145,9 @@
 					<li class="treeview"><a href="#"><i class="fa fa-share"></i>
 							<span>行车违章</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">												          
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branch">车辆违章登记</g:link></li>
-					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="branchGroup">违章处理</g:link></li>            
+					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="VehicleIllgleMenagement" action="checkIn">车辆违章登记</g:link></li>
+					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="VehicleIllgleMenagement" action="dispose">违章处理</g:link></li> 
+					            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="VehicleIllgleMenagement" action="list">违章列表</g:link></li>                    
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
@@ -154,10 +155,10 @@
 					<li class="treeview"><a href="#"><i class="fa  fa-gear (alias)"></i>
 							<span>准驾证管理</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="excelUpload" action="createSalesOrder">准驾证管理</g:link></li>
-				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证核发</g:link></li>
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证延期</g:link></li>
-							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="customerStock" action="initUploadExcel">准驾证吊销</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="drivingPermitManagement" action="driviLicense">准驾证管理</g:link></li>
+				            <li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="drivingPermitManagement" action="checkin">准驾证核发</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="drivingPermitManagement" action="postpone">准驾证延期</g:link></li>
+							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="drivingPermitManagement" action="revoke">准驾证吊销</g:link></li>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 								
@@ -168,20 +169,11 @@
 							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="manaBuy" action="showVehicle">购入车辆信息录入</g:link></li>
 							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="manaRent" action="showVehicle">租赁车辆信息录入</g:link></li>
 							<li><a href="" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="manaBuy" action="list">车辆管理</g:link></li>
-							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listApprove">车辆报废</g:link></li>
+							<%--<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="listApprove">车辆报废</g:link></li>
 							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">车辆转让</g:link></li>
-							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">停止租赁</g:link></li>
+							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusClose">停止租赁</g:link></li>--%>
 						</ul></li>
 					<!-- 一个导航链接结束 -->
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 					<!-- 一个导航链接开始 -->
 					<li class="treeview"><a href="#"><i class="fa fa-asterisk"></i>

@@ -4,7 +4,8 @@ class VehicleScrapped {
 
     static constraints = {
     }
-	Vehicle vehicle
+	
+    Boolean isScrapped  //是否报废
 	Date scrapTime   //报废时间
 	
 }

@@ -20,17 +20,21 @@ class ManaRentController {
 	
 	//添加租赁车辆
 	def saveVehicle(){
-		def recordTime = params.date('recordTime','yyyy.MM.dd')
+		def recordTime = new Date()
+		def insureEndDate = params.date('insureEndDate','yyyy.MM.dd')
 		def vOwner = params.vOwner
 		def vehicleType = params.vehicleType
 		def price = params.double('price')
 		def vehicleModel = params.vehicleModel
 		def vehicleNO = params.vehicleNO
+		def vehicleBrand = params.vehicleBrand
 		def gotDate = params.date('gotDate','yyyy.MM.dd')
 		def rentTo = params.date('rentTo','yyyy.MM.dd')
 		def manufacturer = params.manufacturer
 		def rentMan = params.rentMan
-		def status = params.status
+		def status = 'NORMAL'
+		def inuse = false
+		def enabled = params.enabled
 		
 		def image = new DynImage()
 		photo =  request.getFile("rentPhoto")
@@ -58,12 +62,35 @@ class ManaRentController {
 		vehicle.price = price
 		vehicle.vehicleModel = vehicleModel
 		vehicle.vehicleNO = vehicleNO
-		vehicle.status = status
+		vehicle.statu = status
+		vehicle.vehicleBrand = vehicleBrand
+		vehicle.insureEndDate = insureEndDate
 		vehicle.vsource = vehicleSource
-		
+		/*if(inuse.equals('1')){
+			vehicle.inuse=true   //1表示true 正在使用
+		}else{
+		   vehicle.inuse=false
+		}*/
+		if(enabled.equals('1')){
+			vehicle.enabled = true    //1表示true 有使用权
+		}else{
+		  vehicle.enabled =false
+		}
 		vehicle.vehiclePhoto = image1
 		vehicle.save(flush:true)
-		//redirect(action:'list',controller:'manaBuy')
+	    redirect(action:'list',controller:'manaBuy')
+	}
+	
+	//停止租赁
+	def vehicleStopRent(long id){
+		def stopRent = new VehicleStopRent()
+		stopRent.isStopRent = true
+		stopRent.stopRentTime = new Date()
+		stopRent.save(flush:true)
+		def vehicle = Vehicle.get(id)
+		vehicle.stopRent = stopRent
+		vehicle.save(flush:true)
+		redirect(action:'list',controller:'manaBuy')
 	}
 	
 	def static savePic(DynImage image){
@@ -95,7 +122,7 @@ class ManaRentController {
 	}
 	
 	//显示租赁凭证图片
-	def showBillPhoto(long id){
+	def showRentPhoto(long id){
 		def vehicleSource = VehicleSource.get(id)
 		def pc = vehicleSource.rentPhoto
 		
