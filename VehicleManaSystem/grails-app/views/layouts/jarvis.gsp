@@ -53,9 +53,9 @@
 	<div class="wrapper">
 		<header class="main-header">
             <!-- Logo -->
-			<a href="" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b></b></span> <!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b></b>公车管理系统</span>
+			<a href="" class="logo" style="background-color:#3C8DBC"> <!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini" style="background-color:#3C8DBC"><b></b></span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-lg" style="background-color:#3C8DBC"><b></b></span>
 			</a>
 			
 			<!-- Header Navbar -->
@@ -65,7 +65,7 @@
 					role="button"> <span class="sr-only">Toggle navigation</span>
 				</a>
 				
-				<div style="float: left; color: white; line-height: 100%; margin-left: 30%;"><h4>公车管理系统
+				<div style="float: left; color: white; line-height: 100%; margin-left: 30%;"><h4 style="font-size:24px;">公车管理系统
 				   </h4></div>
 				<!-- Navbar Right Menu -->
 				<div class="navbar-custom-menu">
@@ -73,7 +73,7 @@
 					<ul class="nav navbar-nav sidebar-menu">				
 						<li class="dropdown user user-menu treeview" id="alink">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-              <span class="hidden-xs">当前用户：<sec:username /></span>
+              <span class="hidden-xs" style="font-size:16px;">当前用户：<sec:username /></span>
             </a>
             <ul class="dropdown-menu" id="dropdown-menu"> 
               <li class="user-header">
@@ -104,9 +104,9 @@
 		<aside class="main-sidebar">			
 			<section class="sidebar">				
 				<ul class="sidebar-menu">
-					<li class="header">HEADER</li>		
+					<%--<li class="header"></li>		
 					
-					<!-- 一个导航链接开始 -->
+					--%><!-- 一个导航链接开始 -->
 					<li class="treeview"><a href="#"><i class="fa  fa-map"></i>
 							<span>车辆使用</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">

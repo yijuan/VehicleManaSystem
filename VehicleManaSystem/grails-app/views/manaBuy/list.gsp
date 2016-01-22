@@ -1,3 +1,4 @@
+<%@page import="com.surelution.vms.Vehicle"%>
 <%@page import="java.awt.Desktop.Action"%>
 <%@page import="org.springframework.stereotype.Controller"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -33,12 +34,12 @@
 						    <div class="fieldcontain  ">
 						     <dl class="dl-horizontal" style="margin-left:-80px;">
 	                            <dt><label for="branch">
-								        <g:message code="label.vehicle.price" default="price" />
+								        <g:message code="label.vehicle.vehicleNO" default="vehicleNO" />
 							         </label>
 							    </dt>
 	                            <dd>
 	                               <div class="col-xs-3">
-	                                  <input type="text" name="price" value="${params.price }" class="form-control">
+	                                  <input type="text" name="vehicleNO" value="${params.vehicleNO}" class="form-control">
 	                               </div>
 	                            </dd>
 	                        </dl>
@@ -49,53 +50,23 @@
 							    </dt>
 	                            <dd>
 	                               <div class="col-xs-3">
-	                                  <input type="text" name="vehicleType" class="form-control">
+	                                  <input type="text" name="vehicleType" value="${params.vehicleType}" class="form-control">
 	                               </div>
 	                            </dd>
 	                        </dl>
-						   </div>
-						<%--<div class="row">
-                           <div class="col-md-8">
-                               <div class="fieldcontain">
-				                  <dl class="dl-horizontal" style="margin-left:-80px;">
-	                                 <dt><label for="salingAt">
-								        <g:message code="customerStock.cdate.label" default="Date" />
-							            </label>
-							         </dt>
-	                                 <dd>
-	                               <div class="col-xs-5">
-	                              <g:textField name="dateBegin" value="${params.dateBegin}" id="datetimepicker" class="form-control"/>
-						<script type="text/javascript">
-                $('#datetimepicker').datetimepicker({
-                	isRTL: false,
-                    format: 'yyyy.mm.dd',
-                    autoclose:true,
-                    minView: 'month',
-                    language: 'zh-CN'
-					});
-        </script>
-						</div>
-						<div class="col-xs-1">~</div>
-						<div class="col-xs-5">
-						<g:textField name="dateEnd" value="${params.dateEnd}" id="datetimepicker1" class="form-control"/>
-						<script type="text/javascript">
-                $('#datetimepicker1').datetimepicker({
-                	isRTL: false,
-                    format: 'yyyy.mm.dd',
-                    autoclose:true,
-                    minView: 'month',
-                    language: 'zh-CN'
-					});
-        </script>
-						
-						</div>
-	                              
+	                         <dl class="dl-horizontal" style="margin-left:-80px;">
+	                            <dt><label for="branch">
+								        <g:message code="label.vehicle.inuse" default="inuse" />
+							         </label>
+							    </dt>
+	                            <dd>
+	                               <div class="col-xs-3">
+	                                   <g:select name="status" value="${params.status }" from="${Vehicle.PrerepairStatus.values()}" keys="${Vehicle.PrerepairStatus.values()*.name()}" class="form-control" />
+	                               </div>
 	                            </dd>
-	                        </dl>						
-					</div>
-				    </div>
-				   </div>
-					--%></fieldset>
+	                        </dl>
+						 </div>
+						</fieldset>
 					
 					 <fieldset class="buttons">
 						<g:submitButton name="search" class="search btn btn-primary" value="${message(code: 'default.button.search.label', default: 'Search')}" />
@@ -153,7 +124,7 @@
                           </g:elseif>
                            <g:else>
                               <g:link action="showTansfer"  id="${vehicle.id}" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#showTransfer" >转让</g:link>
-                              <a href="${createLink(action:'vehicleScrapped',controller:'manaBuy',id:vehicle.id)}" class="btn btn-primary btn-sm">报废</a>
+                              <a href="${createLink(action:'showVehicleScrapped',controller:'manaBuy',id:vehicle.id)}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#showScrapped" >报废</a>
                            </g:else>
                         </g:if>
                         <g:else>
@@ -171,6 +142,14 @@
 			</table>
 			</div>
 			<div class="modal fade" id="showTransfer" role="dialog">
+                                 <div class="modal-dialog">
+                                     <!-- Modal content-->
+                                    <div class="modal-content"> 
+                                    </div>
+                                 </div>
+                             </div>	
+                             
+                             <div class="modal fade" id="showScrapped" role="dialog">
                                  <div class="modal-dialog">
                                      <!-- Modal content-->
                                     <div class="modal-content"> 

@@ -78,7 +78,9 @@
 			<tbody>
 			<g:each in="${illgle}"  var="illgel">
 			<tr>
-			<td>${illgel?.voucherID }</td>
+			<td>
+			<g:link action="dispose" id="${illgel?.voucherID }">${illgel?.voucherID }</g:link>
+			</td>
 			<td>
 				<g:if test="${illgel.vehicleInUse == null}">
 					${illgel?.vehicle?.vehicleNO }

@@ -9,11 +9,8 @@
       function compare(){
         var expectTime = $(".rl").val();
         var borrowTime = $(".fl").val();
-        var expect = new Date(expectTime.replace("-", "/").replace("-", "/"));
-        var borrow = new Date(borrowTime.replace("-", "/").replace("-", "/"));
-        alert(expect);
-        alert(borrow);
-        alert(borrow>expect);
+        var expect = new Date(expectTime.replace(" ", "T").replace(".", "-").replace(".", "-") + ":00");
+        var borrow = new Date(borrowTime.replace(" ", "T").replace(".", "-").replace(".", "-") + ":00");
         if(borrow>expect){
               $("#mess").html("预计归还时间应该大于借车时间！")
               $("#sub").prop('disabled', true);

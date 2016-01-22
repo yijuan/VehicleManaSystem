@@ -40,6 +40,10 @@ class Vehicle {
 		NORMAL,     //正常
 		PREINUSE,    //报修可以使用
 		PRENOTINUSE  //报修不可以使用
+		
+	    public String toString() {
+			KeyedMessage.findByKey("PrerepairStatus-" + name())?.message
+		}
 	}
 	
 	Date insureEndDate  //保险到期日

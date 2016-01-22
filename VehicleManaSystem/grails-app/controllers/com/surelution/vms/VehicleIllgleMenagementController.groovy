@@ -19,35 +19,37 @@ class VehicleIllgleMenagementController {
 		[vehi:vehi]
 	}
 	
-	def dispose(){
+	def dispose(long id){
 		//违章处理
-		def voucherid = params.voucherID;
-		def illgle = VehicleIllgle.findByVoucherID(voucherid);
-		def vehicle
+		def voucherid;
+		def illgle;
+		def vehicle;
 		if(voucherid==null){
 			flash.message=""
 		}
 		if(voucherid!=null && illgle==null){
 			flash.message="该违章单号没有违章信息，请检查违章单号是否正确"
 		}
-		
-		if(voucherid && illgle){
-			def ischecked = illgle.ischecked
-		    if(ischecked){
-				flash.message="该违章已经处理！";
-			}else{
-				if(illgle.vehicleInUse){
-					vehicle = illgle.vehicleInUse.vehicle;
-				}
-				else{
-					vehicle = illgle.vehicle
-				}
-			}
+		if(id){
+			voucherid = id;
+			illgle = VehicleIllgle.findByVoucherID(voucherid);
 		}
-		
-		println illgle
-		println vehicle
-		[illgle:illgle,vehicle:vehicle]
+		else{
+			voucherid = params.voucherID;
+			illgle = VehicleIllgle.findByVoucherID(voucherid);
+		}
+		if(illgle){
+		    if(illgle.ischecked){
+				flash.message="该违章已经处理！";
+			}
+			if(illgle.vehicleInUse){
+				vehicle = illgle.vehicleInUse.vehicle;
+			}
+			else{
+				vehicle = illgle.vehicle
+			}
+			[illgle:illgle,vehicle:vehicle]
+		}
 
 	}
 	

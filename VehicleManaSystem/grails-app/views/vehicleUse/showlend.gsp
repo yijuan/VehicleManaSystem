@@ -43,11 +43,11 @@
 	            </tr>
 	            <tr> 
 	               <th>借出时间</th>
-	               <td><g:formatDate date="${vehicleInUse.borrowTime }" format="yyyy-MM-dd hh:mm"/></td>
+	               <td><g:formatDate date="${vehicleInUse.borrowTime }" format="yyyy-MM-dd HH:mm"/></td>
 	            </tr>
 	            <tr> 
 	               <th>预计归还时间</th>
-	               <td><g:formatDate date="${vehicleInUse.expectReturnTime }" format="yyyy-MM-dd hh:mm"/></td>
+	               <td><g:formatDate date="${vehicleInUse.expectReturnTime }" format="yyyy-MM-dd HH:mm"/></td>
 	            </tr>
 	            <tr> 
 	               <th>借车记录人</th>

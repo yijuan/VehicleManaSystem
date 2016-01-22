@@ -1,5 +1,7 @@
 package com.surelution.vms
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -42,15 +44,20 @@ class VehicleUseController {
 	def returnVehicle(){
 		def carNO = params.carNO
 		def dp = DrivingPermit.findByDpNO(carNO)
-		/*def vehicleInUseList = VehicleInUse.findAllByDrivingPermit(dp)
-		[vehicleInuseList:vehicleInUseList]*/
+		
+		if(carNO!=null && dp!=null && dp.licensRevoked==true ){
+			flash.message="该准驾证已经吊销"
+		}else{
+		    flash.message=""
+		}
+		
 		def vehicleInUseList = VehicleInUse.createCriteria().list {
 			if(dp){
-			 eq('drivingPermit',dp)}
+			  eq('drivingPermit',dp)
+			 }
 		}
 		[vehicleInuseList:vehicleInUseList]
 	}
-	
 	
 	//显示还车详细信息
 	def showDetails(){
@@ -71,8 +78,9 @@ class VehicleUseController {
 		vehicle.save(flush:true)
 		
 		
-		def borrowTime = params.date('borrowTime',"yyyy.MM.dd hh:mm")
-		def expectReturnTime = params.date('expectReturnTime',"yyyy.MM.dd hh:mm")
+		def borrowTime = params.date('borrowTime','yyyy.MM.dd HH:mm')
+		println borrowTime
+		def expectReturnTime = params.date('expectReturnTime',"yyyy.MM.dd HH:mm")
 		def reason = params.reason
 		//def receiveMile = params.double('receiveMile')
 		
@@ -99,7 +107,13 @@ class VehicleUseController {
 	//车辆归还
 	def sendVehicle(){
 		def vehicleInUseId = params.vehicleInUseId
-		def returnTime = params.date('returnTime','yyyy.MM.dd hh:mm')
+		def returnT = params.returnTime
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy.MM.dd HH:mm");    
+		def returnTime = fmt.parse(returnT)   
+		
+		println returnTime
+		
 		def returnMile = params.double('returnMile')
 		def receiveMile = params.double('receiveMile')
 		def isDelay = params.delay

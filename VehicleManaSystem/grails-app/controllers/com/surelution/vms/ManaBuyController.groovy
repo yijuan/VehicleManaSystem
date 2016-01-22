@@ -20,30 +20,35 @@ class ManaBuyController {
 	
 	
 	def showVehicle(){}
+	
+	
+	def showVehicleScrapped(long id){
+        //车辆报废显示		
+		def vehicle = Vehicle.get(id)
+		[vehicle:vehicle]
+	}
 
 	//购入车辆显示列表
 	def list(){
-	   def price = params.double('price')
+		def statu
+	   def vehicleNO = params.vehicleNO
 	   def vehicleType = params.vehicleType
-	   def dateBegin = params.date('dateBegin','yyyy.MM.dd')
-	   
-	   def dateEnd = params.date('dateEnd','yyyy.MM.dd')
+	   def sta = params.status
+	   if(sta){
+	    statu  = Vehicle.PrerepairStatus.valueOf(sta)
+	   }
 	   def vehicleResult = Vehicle.createCriteria().list {
-		   if(price){
-			   eq('price',price)
+		   if(vehicleNO){
+			   eq('vehicleNO',vehicleNO)
 		   }
 		   if(vehicleType){
 			   eq('vehicleType',vehicleType)
 		   }
-		   if(dateBegin){
-			   ge('recordTime',dateBegin)
+		   if(sta){
+			   eq('statu',statu)
 		   }
-		   if(dateEnd){
-			   le('recordTime',dateEnd)
-		   }
-		   
 	   }
-	   println vehicleResult
+
 	   [vehicleResult:vehicleResult]
 	}
 	
@@ -150,13 +155,15 @@ class ManaBuyController {
 	}
 	
 	//车辆报废
-	def vehicleScrapped(long id){                   
+	def vehicleScrapped(){     
+		def vehicleId = params.vehicleId      
+		def scrappedTime = params.date('scrappedTime','yyyy.MM.dd')        
 		def scrapped = new VehicleScrapped()
 		scrapped.isScrapped = true
-		scrapped.scrapTime = new Date()
+		scrapped.scrapTime = scrappedTime
 		scrapped.save(flush:true)
 		
-		def vehicle = Vehicle.get(id)
+		def vehicle = Vehicle.get(vehicleId)
 		vehicle.scrapped = scrapped
 		vehicle.save(flush:true)
 		redirect(action:'list')

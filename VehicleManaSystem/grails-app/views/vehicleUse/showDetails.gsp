@@ -10,9 +10,9 @@
         var returnTime = $(".rl").val();
         var excepctReturnTime = $("#vehicleInUse").val();
         var borrowTime = $("#borrowTime").val();
-        var return1 = new Date(returnTime.replace("-", "/").replace("-", "/"));
-        var excepctReturn = new Date(excepctReturnTime.replace("-", "/").replace("-", "/"));
-        var borrow = new Date(borrowTime.replace("-", "/").replace("-", "/"));
+        var return1 = new Date(returnTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
+        var excepctReturn = new Date(excepctReturnTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
+        var borrow = new Date(borrowTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
         if(return1>excepctReturn){
              $("#isDelay").css("display","block");
              $("#delay").attr("checked",true);
@@ -62,7 +62,7 @@
 								<script type="text/javascript">
 									$('#datetimepicker').datetimepicker({
 										isRTL : false,
-										format : 'yyyy.mm.dd hh:ii',
+										format : 'yyyy.mm.dd HH:ii',
 										autoclose : true,
 										minView : 'hour',
 										language : 'zh-CN'

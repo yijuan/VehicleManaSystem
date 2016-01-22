@@ -5,16 +5,21 @@ class DrivingPermitManagementController {
     def index() { }
 	
 	def DriviLicense(Integer max){
-		//准驾证管理
-		// def dp = DrivingPermit.list()
-         
-		 def dpNO = params.dpNO
-		 def dp = DrivingPermit.createCriteria().list {
-			 if(dpNO){
-				 eq('dpNO',dpNO)
-			 }
-		 }
-		['dp':dp]
+		def dp;
+		def dpNO = params.dpNO
+		if(dpNO == null){
+			dp = DrivingPermit.list();
+		}
+		else{
+			dp = DrivingPermit.findByDpNO(dpNO);
+			if(dp == null){
+				flash.message = "无此准驾证，请核对后查询!";
+			}
+			else{
+				flash.message = "";
+			}
+		}
+		[dp:dp]
 	}
 	
 	def checkin(){

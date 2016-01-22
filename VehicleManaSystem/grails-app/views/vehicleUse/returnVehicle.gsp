@@ -44,6 +44,10 @@
                   </div>
                 </div>
                 
+                <g:if test="${flash.message}">
+                     <div style="color: red;">${flash.message }</div>
+                </g:if>
+                
                 <table class="table table-bordered  table-striped">
                     <thead>
                          <tr>

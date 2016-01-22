@@ -5,6 +5,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="layout" content="jarvis" />
 <title>车辆违章处理</title>
+<script type="text/javascript">
+	$("#document").ready(function(){
+		var tr = 'true';
+		var ischeck = $("#ischecked").val();
+		if(tr === ischeck){
+			$("#sub").prop('disabled',true);
+			$("#dealMan").prop('readonly',true);
+			$('#dealResult').prop('readonly',true);
+			$('#dealTime').prop('readonly',true);
+		}
+	});
+</script>
 </head>
 <body>
 <div class="content-wrapper">
@@ -22,7 +34,7 @@
 	<g:form action="dispose">
 	<dd>
 		<div class="col-xs-6">
-		<input type="text" name="voucherID" class="form-control" required>
+		<input type="text" name="voucherID" value="${illgle?.voucherID }"class="form-control" required>
 		</div>
 		<fieldset class="buttons">
 		<g:submitButton name="search" class="search btn btn-primary" value="${message(code: 'default.button.search.label', default: 'search')}" />
@@ -134,7 +146,7 @@ ${flash.message }
 	</dd>
 </dl>
 <g:form  action="updata">
-<input type="hidden" name="voucherID" value="${params.voucherID }" class="form-control">
+<input type="hidden" name="voucherID" value="${illgle?.voucherID }" class="form-control">
 <dl class="dl-horizontal" >
 	<dt>
 	<label for="branch">
@@ -143,9 +155,10 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<g:textField value="${new Date().format('yyyy.MM.dd HH:mm') }" name="dealTime" id="datetimepicker" class="form-control" required=''/>
+		<g:if test="${illgle?.dealTime == null }">
+		<input type="text" value="${new Date().format('yyyy-MM-dd HH:mm') }" name="dealTime" id="dealTime" class="form-control" />
 		<script type="text/javascript">
-		$('#datetimepicker').datetimepicker({
+		$('#dealTime').datetimepicker({
 			isRTL:false,
 			format:'yyyy.mm.dd hh:ii',
 			autoclose:true,
@@ -153,6 +166,10 @@ ${flash.message }
 			language:'zh-CN'
 		});
 		</script>
+		</g:if>
+		<g:else>
+		<input type="text" value="<g:formatDate date="${illgle?.dealTime }" format="yyyy-MM-dd HH:mm"/>" name="dealTime" id="dealTime" class="form-control"/>
+		</g:else>
 		</div>
 	</dd>
 </dl>
@@ -165,7 +182,7 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealResult" value=" " class="form-control" required>
+		<input type="text" name="dealResult" value="${illgle?.dealResult} " class="form-control" required id="dealResult">
 		</div>
 	</dd>
 </dl>
@@ -178,13 +195,16 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealMan" value=" " class="form-control" required>
+		<input type="text" name="dealMan" value=" ${illgle?.dealMan}" class="form-control" required id="dealMan" />
 		</div>
 	</dd>
 </dl>
+<div style="width:70px; margin-left:66%;">
+<input type="hidden" value="${illgle?.ischecked}" id="ischecked"/>
 <fieldset class="buttons">
-	<g:actionSubmit class="save move btn btn-default" action="updata" value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
+	<g:actionSubmit id="sub" class="save move btn btn-primary" action="updata" value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
 </fieldset>
+</div>
 </g:form>
 </div>
 </section>
