@@ -5,6 +5,14 @@
 <head>
 	<meta name="layout" content="jarvis">
 	<title>车辆违章登记</title>
+	
+	<script type="text/javascript">
+$('#document').ready(function(){
+	if($('#vehi').val() == ''){
+		$('#save').prop('disabled',true);
+	}
+});
+</script>
 </head>
 <style>
 	td th{width:200px;}
@@ -13,9 +21,8 @@
 <body>
 <div class="content-wrapper"><!--  -->
 	<section class="content-header" >
-		<h3>车辆违章登记</h3>
+		<h3 style="margin-top:-1px;">车辆违章登记</h3>
 	</section>
-<div style="width:96%; margin-left:10%; ">
 <section class="content">
 <div style="margin-top:2px; margin-left:10%; font-size:22px; font-weight:bold; color:red;">
 <g:if test="${flash.message }">
@@ -154,10 +161,10 @@ ${flash.message }
 		</div>
 	</dd>
 </dl>
-
+<input type="hidden" value="${vehi }" id="vehi">
 <input type="hidden" value="${vehi?.id}" name="vehicleNO"/>
 <fieldset class="buttons">
-	<g:submitButton name="save" class="save btn btn-primary" value="${message(code: 'default.button.save.label', default: 'save')}" />
+	<g:submitButton name="save" id="save" class="save btn btn-primary" value="${message(code: 'default.button.save.label', default: 'save')}" />
 </fieldset>
 </g:uploadForm>
 </section>

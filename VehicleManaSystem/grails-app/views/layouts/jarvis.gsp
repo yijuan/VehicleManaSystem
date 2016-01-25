@@ -196,7 +196,7 @@
 			<!-- To the right -->
 			<div class="pull-right hidden-xs"></div>
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2015 <a href="http://www.sh-hansi.com" target="_blank">上海悍思企业管理咨询有限公司</a>.
+			<strong>Copyright &copy; 2016 <a href="http://www.sh-hansi.com" target="_blank">上海悍思企业管理咨询有限公司</a>.
 			</strong> All rights reserved.
 		</footer>
 

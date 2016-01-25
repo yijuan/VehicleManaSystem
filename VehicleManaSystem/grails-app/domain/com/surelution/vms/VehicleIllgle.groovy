@@ -17,6 +17,8 @@ class VehicleIllgle {
 		image nullable:true;
 		vehicleInUse nullable:true;
 		vehicle nullable:true;
+		
+		voucherID unique:true
     }
 	
 	Date illgleTime  //违章时间

@@ -56,7 +56,7 @@
 	                        </dl>
 	                         <dl class="dl-horizontal" style="margin-left:-80px;">
 	                            <dt><label for="branch">
-								        <g:message code="label.vehicle.inuse" default="inuse" />
+								        <g:message code="label.vehicle.prepairStatus" default="车辆维修状态" />
 							         </label>
 							    </dt>
 	                            <dd>

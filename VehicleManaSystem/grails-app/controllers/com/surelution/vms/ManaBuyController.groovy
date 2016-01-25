@@ -127,8 +127,14 @@ class ManaBuyController {
 		    vehicle.enabled = false   //1表示true 有使用权
 		}
 		vehicle.vehiclePhoto = image1
-		vehicle.save(flush:true)
-		redirect(action:'list')
+		
+		if(vehicle.save(flush:true)){
+			redirect(action:'list')
+		}else{
+		  flash.message="该车牌号码已经添加!"
+		  redirect(action:'list')
+		}
+		
 	}
 	
 	//编辑购入车辆

@@ -9,9 +9,11 @@
         var returnTime = $(".rl").val();
         var excepctReturnTime = $(".excepctReturnTime").val();
         var borrowTime = $(".borrowTime").val();
+
         var return1 = new Date(returnTime.replace(" ", "T").replace(".", "-").replace(".", "-")+":00");
-        var excepctReturn =new Date(excepctReturnTime);
-        var borrow = new Date(borrowTime);
+        var excepctReturn =new Date(excepctReturnTime.replace(" ", "T"));
+        var borrow = new Date(borrowTime.replace(" ", "T"));
+        
         if(return1>excepctReturn){
              $("#isDelay").css("display","block");
              $("#delay").attr("checked",true);
@@ -29,14 +31,14 @@
          }
 
      function check(){
-          var receiveMile = $("#receiveMile").val();
-          var returnMile = $("#returnMile").val();
-          if(receiveMile>returnMile){
-               $("#mess").html("交车里程数必须大于接车里程数");
-               $("#sub").prop('disabled', true);
-              }else{
-            	  $("#mess").html("");
-                  $("#sub").prop('disabled', false);
+          var receiveMile = $("#receiveMile").val(); //借车
+          var returnMile = $("#returnMile").val();   //还车
+          if(returnMile>receiveMile){
+        	  $("#mess").html("");
+              $("#sub").prop('disabled', false);
+          }else{
+        	  $("#mess").html("交车里程数必须大于接车里程数");
+              $("#sub").prop('disabled', true);
                   }
          }
 </script>

@@ -16,6 +16,23 @@
 			$('#dealTime').prop('readonly',true);
 		}
 	});
+
+
+	function check(form){
+		if(form.dealResult.value.length == 3){
+			form.dealResult.value.length == '';
+			alert("请输入处理方式!");
+			return false;
+		}
+		if(form.dealMan.value.length == 3){
+			form.dealMan.value = '';
+			alert("请输入处理人!");
+			return false;
+		}
+	        return true;
+	}
+
+
 </script>
 </head>
 <body>
@@ -50,7 +67,7 @@ ${flash.message }
 </div>
 <div>
 <h3 style="font-weight:bold;">违章情况：</h3>
-<div style="height:20px;"></div>
+
 <dl class="dl-horizontal" >
 	<dt>
 	<label for="branch">
@@ -145,7 +162,7 @@ ${flash.message }
 		</div>
 	</dd>
 </dl>
-<g:form action="updata">
+<g:form action="updata" onsubmit="return check(this)">
 <input type="hidden" name="voucherID" value="${illgle?.voucherID }" class="form-control">
 <dl class="dl-horizontal" >
 	<dt>
@@ -182,7 +199,7 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealResult" value="${illgle?.dealResult} " id="dealResult" class="form-control"   required>
+		<input type="text" name="dealResult" value="${illgle?.dealResult}" id="dealResult" class="form-control"   required>
 		</div>
 	</dd>
 </dl>
@@ -195,7 +212,7 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealMan"  id="dealMan" value=" ${illgle?.dealMan}" class="form-control"  required="required" />
+		<input type="text" name="dealMan"  id="dealMan" value="${illgle?.dealMan}" class="form-control"  required="required" />
 		</div>
 	</dd>
 </dl>
@@ -203,7 +220,7 @@ ${flash.message }
 <input type="hidden" value="${illgle?.ischecked}" id="ischecked"/>
 <fieldset class="buttons">
 	<%--<g:actionSubmit id="sub" class="save move btn btn-primary"  value="${message(code: 'default.button.update.label', default: '提交 ')}"/>--%>
-   <input type="submit" id="sub" class="save move btn btn-primary"  value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
+   <input type="submit" id="sub" onclick="return check(this.form)" class="save move btn btn-primary"  value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
 </fieldset>
 </div>
 </g:form>

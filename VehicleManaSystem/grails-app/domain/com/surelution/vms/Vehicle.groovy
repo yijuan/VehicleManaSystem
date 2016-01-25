@@ -14,6 +14,8 @@ class Vehicle {
 		stopRent nullable:true
 		transfer nullable:true
 		scrapped nullable:true
+		
+		vehicleNO unique:true
     }
 	
 	Date recordTime  //车辆记录在册时间

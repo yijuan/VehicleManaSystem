@@ -18,11 +18,15 @@ class VehicleIllgleMenagementController {
 		def vehi = Vehicle.findByVehicleNO(vehicleid)
 		if(vehicleid != null && vehi == null){
 			flash.message = "无此车牌号！请输入正确的车牌号码。"
+		}else{
+		  flash.message=""
 		}
 		[vehi:vehi]
 	}
 	
-	def dispose(long id){
+	def dispose(){
+		
+		println params.voucherID
 		//违章处理
 		def voucherid;
 		def illgle;
@@ -33,8 +37,8 @@ class VehicleIllgleMenagementController {
 		if(voucherid!=null && illgle==null){
 			flash.message="该违章单号没有违章信息，请检查违章单号是否正确"
 		}
-		if(id){
-			voucherid = id;
+		if(params.voucherID){
+			voucherid = params.voucherID;
 			illgle = VehicleIllgle.findByVoucherID(voucherid);
 		}
 		else{
@@ -61,6 +65,7 @@ class VehicleIllgleMenagementController {
 	
 	def list(){
 		def voucherid = params.voucherID
+		
 		def illgle
 		if(voucherid){
 			illgle = VehicleIllgle.findByVoucherID(voucherid);
@@ -106,11 +111,15 @@ class VehicleIllgleMenagementController {
 		vehicleillgle.illgleSituation = illglesituation
 		vehicleillgle.image = image
 		if(vehicleillgle.vehicle != null || vehicleillgle.vehicleInUse != null){
-			vehicleillgle.save(flush:true)
-			redirect(action:'list')
+			if(vehicleillgle.save(flush:true)){
+				redirect(action:'list')
+			}else{
+			    flash.message="该单号已经添加"
+				redirect(action:'list')
+			}
 		}
 		else{
-			flash.message = "找不到车牌号，请输入正确的车牌号码，重新提交。"
+			//flash.message = "找不到车牌号，请输入正确的车牌号码，重新提交。"
 			redirect(action:'checkIn')
 		}
 

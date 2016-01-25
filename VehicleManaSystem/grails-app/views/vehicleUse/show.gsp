@@ -49,7 +49,7 @@
                          <tr>
                             <th><g:message code="chepaihao" default="车牌号"/></th>
                             <th><g:message code="chexing" default="车型"/></th>
-                            <th><g:message code="xinghao" default="发动机型号"/></th>
+                            <th><g:message code="xinghao" default="发动机号"/></th>
                             <th>厂牌型号</th>
                             <th><g:message code="zhuangtai" default="车辆使用状态"/></th>
                             <th><g:message code="weixiu" default="维修状态"/></th>

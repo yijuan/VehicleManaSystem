@@ -4,7 +4,6 @@ class DrivingPermitManagementController {
 
     def index() { }
 	
-	//TODO 徐光宗代码审核意见: 此处方法应该以小写字母开头，建议改为 driviLicense
 	def DriviLicense(Integer max){
 		//准驾证管理
 		def dpList;
@@ -30,7 +29,6 @@ class DrivingPermitManagementController {
 			if(dpList == null){
 				flash.message = "无此准驾证，请核对后查询!";
 			}
-			//TODO 徐光宗代码审核意见 else代码块没有必要，建议删除
 			else{
 				flash.message = "";
 				dpList.numbIllgle = 0;
@@ -80,8 +78,15 @@ class DrivingPermitManagementController {
 		d.enabled = true;
 		
 		
-		d.save(flush: true)
-		redirect(action:'DriviLicense')
+		if(d.save(flush: true)){
+			redirect(action:'DriviLicense')
+		}else{
+		   flash.message="该准驾证已经添加！"
+		   redirect(action:'DriviLicense')
+		}
+		
+		
+		
 	}
 	
 	def postpone(){

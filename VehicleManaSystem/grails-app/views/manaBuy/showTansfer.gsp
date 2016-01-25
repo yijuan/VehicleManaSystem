@@ -22,7 +22,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-							  <g:textField name="transferTime" value="${params.transferTime}" id="datetimepicker" class="form-control"/>
+							  <g:textField name="transferTime" value="${new Date().format('yyyy.MM.dd HH:mm')}" id="datetimepicker" class="form-control"/>
 						          <script type="text/javascript">
 						                $('#datetimepicker').datetimepicker({
 						                	isRTL: false,
@@ -46,7 +46,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<input type="text" name="money" class="form-control"/>
+								<input type="text" name="money" class="form-control" required/>
 							</div>
 						</dd>
 					</dl>
@@ -59,7 +59,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<input type="text" name="contractNO" class="form-control"/>
+								<input type="text" name="contractNO" class="form-control" required/>
 							</div>
 						</dd>
 					</dl>
@@ -72,7 +72,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<input type="text" name="tansferMan" class="form-control"/>
+								<input type="text" name="tansferMan" class="form-control" required/>
 							</div>
 						</dd>
 					</dl>
@@ -85,7 +85,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<textarea class="form-control" name="transferReason"></textarea>
+								<textarea class="form-control" name="transferReason" required></textarea>
 							</div>
 						</dd>
 					</dl>
@@ -93,8 +93,8 @@
 		 </div>	
 		 <div class="modal-footer">		
 				<fieldset class="buttons">
-					<input type="submit" value="确认转让" onclick="return confirm('确认转让吗？')" class="btn btn-default"/>
-					<button type="button" class="btn btn-default" data-dismiss="modal" >取消</button>
+					<input type="submit" value="确认转让" onclick="return confirm('确认转让吗？')" class="btn btn-primary"/>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" >取消</button>
 				</fieldset>
 		</div>
 		</g:uploadForm>

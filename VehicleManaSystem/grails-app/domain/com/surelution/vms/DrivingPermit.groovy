@@ -12,6 +12,7 @@ class DrivingPermit {
 		delayTo nullable:true;
 		revokeDate nullable:true;
 		
+		dpNO unique:true
     }
 	
 	String dpNO         //准驾证编号

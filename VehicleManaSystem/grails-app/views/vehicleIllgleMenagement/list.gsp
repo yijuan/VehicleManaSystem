@@ -1,10 +1,12 @@
 
+<%@page import="java.awt.Desktop.Action"%>
 <%@ page import="com.surelution.vms.User" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="layout" content="jarvis">
 	<title>违章</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<style>
 		.modalstyle{ width: 40%; background-color:#F5F5F5; filter:alpha(opacity=50); margin-left:30%; height:65%; margin-top:5%; border-radius:5px; border: 1px solid #C5CBD7}
 	     td th{width:200px;}
@@ -28,7 +30,7 @@
 <body>
 <div class="content-wrapper"><!--  -->
 	<section class="content-header" >
-		<h3>违章</h3>
+		<h3 style="margin-top:-1px">违章</h3>
 	</section>
 <section class="content">
 <div class="box box-info">
@@ -79,7 +81,7 @@
 			<g:each in="${illgle}"  var="illgel">
 			<tr>
 			<td>
-			<g:link action="dispose" id="${illgel?.voucherID }">${illgel?.voucherID }</g:link>
+			<a href="${createLink(action:'dispose',params:['voucherID':illgel?.voucherID])}">${illgel?.voucherID }</a>
 			</td>
 			<td>
 				<g:if test="${illgel.vehicleInUse == null}">
