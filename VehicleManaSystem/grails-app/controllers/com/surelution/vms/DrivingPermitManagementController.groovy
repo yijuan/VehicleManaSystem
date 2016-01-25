@@ -4,6 +4,7 @@ class DrivingPermitManagementController {
 
     def index() { }
 	
+	//TODO 徐光宗代码审核意见: 此处方法应该以小写字母开头，建议改为 driviLicense
 	def DriviLicense(Integer max){
 		def dp;
 		def dpNO = params.dpNO
@@ -15,6 +16,7 @@ class DrivingPermitManagementController {
 			if(dp == null){
 				flash.message = "无此准驾证，请核对后查询!";
 			}
+			//TODO 徐光宗代码审核意见 else代码块没有必要，建议删除
 			else{
 				flash.message = "";
 			}
