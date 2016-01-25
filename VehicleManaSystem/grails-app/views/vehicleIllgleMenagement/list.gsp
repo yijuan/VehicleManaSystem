@@ -90,7 +90,7 @@
 					${illgel?.vehicleInUse?.vehicle?.vehicleNO }
 				</g:else>
 			</td>
-			<td><g:formatDate date="${illgel?.illgleTime }" format="yyyy-MM-dd hh:mm"/></td>
+			<td><g:formatDate date="${illgel?.illgleTime }" format="yyyy-MM-dd HH:mm"/></td>
 			<td>${illgel?.location }</td>
 			<td>${illgel?.processingUnit }</td>
 			<td>${illgel?.illgleSituation }</td>
@@ -98,7 +98,7 @@
 			   <g:if test="${illgel?.ischecked==true}">是</g:if>
 			   <g:else>否</g:else>
 			</td>
-			<td><g:formatDate date="${illgel?.dealTime }" format="yyyy-MM-dd hh:mm"/></td>
+			<td><g:formatDate date="${illgel?.dealTime }" format="yyyy-MM-dd HH:mm"/></td>
 			<td>${illgel?.dealResult }</td>
 			<td>${illgel?.dealMan }</td>
 			<td>

@@ -5,6 +5,9 @@
 <script type="text/javascript" src="${resource(dir:'jarvis/js',file:'bootstrap.min.js') }"></script>
 <script type="text/javascript" src="${resource(dir:'jarvis/js',file:'icheck.min.js') }"></script>
 <script type="text/javascript" src="${resource(dir:'jarvis/js',file:'jQuery-2.1.4.min.js') }"></script>
+<link rel="shortcut icon" href="${resource(dir: 'images', file: 'logo.png')}" type="image/x-icon"/>
+		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'logo.png')}">
+		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'logo.png')}">
 <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/css/bootstrap.css">
 <link rel="stylesheet" href="${resource(dir:'jarvis/css',file:'blue.css')}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">

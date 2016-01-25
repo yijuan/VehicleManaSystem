@@ -13,14 +13,11 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
  *
  */
 class ManaBuyController {
-	
-	static CommonsMultipartFile  photo
 
     def index() { }
 	
 	
 	def showVehicle(){}
-	
 	
 	def showVehicleScrapped(long id){
         //车辆报废显示		
@@ -30,7 +27,7 @@ class ManaBuyController {
 
 	//购入车辆显示列表
 	def list(){
-		def statu
+	   def statu
 	   def vehicleNO = params.vehicleNO
 	   def vehicleType = params.vehicleType
 	   def sta = params.status
@@ -71,9 +68,18 @@ class ManaBuyController {
 		
 		
 		def image = new DynImage()
-		photo =  request.getFile("billPhoto")
+		CommonsMultipartFile photo =  request.getFile("billPhoto")
+		def location = Holders.config.grails.dynImage.rootPath
+		def uuid = UUID.randomUUID().toString()
+		def picUrl = "${location}${uuid}"
+		println picUrl
+		
 		if(photo && !photo.empty){
-		savePic(image)
+			def name = photo.getOriginalFilename()
+			image.picUrl = picUrl
+			image.originPicName = name
+			image.save(flush:true)
+			photo.transferTo(new File(picUrl))
 		}
 		def vehicleSource = new BuyVehicle()
 		vehicleSource.gotDate = gotDate
@@ -86,9 +92,18 @@ class ManaBuyController {
 		vehicleSource.save(flush:true)
 		
 		def image1 = new DynImage()
-		photo =  request.getFile("vehiclePhoto")
-		if(photo && !photo.empty){
-		savePic(image1)
+		CommonsMultipartFile photo1 =  request.getFile("vehiclePhoto")
+		def location1 = Holders.config.grails.dynImage.rootPath
+		def uuid1 = UUID.randomUUID().toString()
+		def picUrl1 = "${location}${uuid}"
+		println picUrl
+		
+		if(photo1 && !photo.empty){
+			def name = photo1.getOriginalFilename()
+			image1.picUrl = picUrl
+			image1.originPicName = name
+			image1.save(flush:true)
+			photo1.transferTo(new File(picUrl))
 		}
 		def vehicle = new Vehicle()
 		vehicle.recordTime = recordTime
@@ -177,7 +192,8 @@ class ManaBuyController {
 	
 	
 	//保存图片的方法
-	def static savePic(DynImage image){
+	def  savePic(DynImage image){
+		CommonsMultipartFile  photo
 		def location = Holders.config.grails.dynImage.rootPath
 		def uuid = UUID.randomUUID().toString()
 		def picUrl = "${location}${uuid}"

@@ -29,11 +29,15 @@ class DrivingPermit {
 	Sex sex   //性别
 	enum Sex{
 		man,woman
+		
+		public String toString() {
+			KeyedMessage.findByKey("Person-" + name())?.message
+		}
 	}
 	String dlicense  //驾驶证
 	int  borrowNum   //借车次数
 	String dlligle   //违章情况
-	
+	int numbIllgle
 	/*Date  validityDate     //有效年限*/
 	Date  issueDate       //核发日期
 	

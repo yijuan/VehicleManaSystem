@@ -64,11 +64,11 @@
 				<th><g:message code="drivingPermit.sex.label" default="性别"/></th>
 				<th><g:message code="drivingPermit.dlicense.label" default="驾驶证"/></th>
 				<th><g:message code="drivingPermit.borrowNum.label" default="借车次数"/></th>
-				<th><g:message code="drivingPermit.dlligle.label" default="违章情况"/></th>
+				<th><g:message code="drivingPermit.numbIllgle.label" default="违章次数"/></th>
 			</tr>
 			</thead>
 			<tbody>
-			<g:each in="${dp}"  var="drivilicense">
+			<g:each in="${dpList}"  var="drivilicense">
 			<tr>
 				<td>${drivilicense?.dpNO }</td>
 				<td><g:formatDate date="${drivilicense?.trainingDate }" format="yyyy-MM-dd"/></td>
@@ -84,7 +84,7 @@
 				<td>${drivilicense?.sex }</td>
 				<td>${drivilicense?.dlicense }</td>
 				<td>${drivilicense?.borrowNum }</td>
-				<td>${drivilicense?.dlligle }</td>	
+				<td>${drivilicense?.numbIllgle }</td>	
 			</tr>
 			</g:each>
 		</tbody>

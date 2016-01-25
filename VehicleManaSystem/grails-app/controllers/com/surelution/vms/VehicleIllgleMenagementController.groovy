@@ -16,6 +16,9 @@ class VehicleIllgleMenagementController {
 		//违章登记
 		def vehicleid = params.vehicleNO
 		def vehi = Vehicle.findByVehicleNO(vehicleid)
+		if(vehicleid != null && vehi == null){
+			flash.message = "无此车牌号！请输入正确的车牌号码。"
+		}
 		[vehi:vehi]
 	}
 	
@@ -76,7 +79,6 @@ class VehicleIllgleMenagementController {
 		def processingunit = params.processingUnit
 		def illglesituation = params.illgleSituation
 		def vehicle = Vehicle.get(vehicleNO)
-		println vehicle
 		def vehicleInUse = VehicleInUse.findAllByVehicle(vehicle)
 		vehicleInUse.each{vehi->
 			if(vehi.borrowTime<=illgletime && vehi.returnTime>=illgletime){
@@ -100,11 +102,17 @@ class VehicleIllgleMenagementController {
 		vehicleillgle.illgleTime = illgletime
 		vehicleillgle.voucherID = voucherid
 		vehicleillgle.location = location
-		vehicleillgle.processingUnit = processingunit;
+		vehicleillgle.processingUnit = processingunit
 		vehicleillgle.illgleSituation = illglesituation
 		vehicleillgle.image = image
-		vehicleillgle.save(flush:true)
-		redirect(action:'list')
+		if(vehicleillgle.vehicle != null || vehicleillgle.vehicleInUse != null){
+			vehicleillgle.save(flush:true)
+			redirect(action:'list')
+		}
+		else{
+			flash.message = "找不到车牌号，请输入正确的车牌号码，重新提交。"
+			redirect(action:'checkIn')
+		}
 
 	}
 	

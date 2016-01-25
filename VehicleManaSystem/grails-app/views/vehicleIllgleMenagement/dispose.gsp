@@ -34,7 +34,7 @@
 	<g:form action="dispose">
 	<dd>
 		<div class="col-xs-6">
-		<input type="text" name="voucherID" value="${illgle?.voucherID }"class="form-control" required>
+		<input type="text" name="voucherID" value="${illgle?.voucherID }"class="form-control" required="">
 		</div>
 		<fieldset class="buttons">
 		<g:submitButton name="search" class="search btn btn-primary" value="${message(code: 'default.button.search.label', default: 'search')}" />
@@ -145,7 +145,7 @@ ${flash.message }
 		</div>
 	</dd>
 </dl>
-<g:form  action="updata">
+<g:form action="updata">
 <input type="hidden" name="voucherID" value="${illgle?.voucherID }" class="form-control">
 <dl class="dl-horizontal" >
 	<dt>
@@ -156,7 +156,7 @@ ${flash.message }
 	<dd>
 		<div class="col-xs-8">
 		<g:if test="${illgle?.dealTime == null }">
-		<input type="text" value="${new Date().format('yyyy-MM-dd HH:mm') }" name="dealTime" id="dealTime" class="form-control" />
+		<input type="text" value="${new Date().format('yyyy-MM-dd HH:mm') }" name="dealTime" id="dealTime" class="form-control" required/>
 		<script type="text/javascript">
 		$('#dealTime').datetimepicker({
 			isRTL:false,
@@ -168,7 +168,7 @@ ${flash.message }
 		</script>
 		</g:if>
 		<g:else>
-		<input type="text" value="<g:formatDate date="${illgle?.dealTime }" format="yyyy-MM-dd HH:mm"/>" name="dealTime" id="dealTime" class="form-control"/>
+		<input type="text" value="<g:formatDate date="${illgle?.dealTime }" format="yyyy-MM-dd HH:mm"/>" name="dealTime" id="dealTime" class="form-control" required/>
 		</g:else>
 		</div>
 	</dd>
@@ -182,7 +182,7 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealResult" value="${illgle?.dealResult} " class="form-control" required id="dealResult">
+		<input type="text" name="dealResult" value="${illgle?.dealResult} " id="dealResult" class="form-control"   required>
 		</div>
 	</dd>
 </dl>
@@ -195,14 +195,15 @@ ${flash.message }
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<input type="text" name="dealMan" value=" ${illgle?.dealMan}" class="form-control" required id="dealMan" />
+		<input type="text" name="dealMan"  id="dealMan" value=" ${illgle?.dealMan}" class="form-control"  required="required" />
 		</div>
 	</dd>
 </dl>
 <div style="width:70px; margin-left:66%;">
 <input type="hidden" value="${illgle?.ischecked}" id="ischecked"/>
 <fieldset class="buttons">
-	<g:actionSubmit id="sub" class="save move btn btn-primary" action="updata" value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
+	<%--<g:actionSubmit id="sub" class="save move btn btn-primary"  value="${message(code: 'default.button.update.label', default: '提交 ')}"/>--%>
+   <input type="submit" id="sub" class="save move btn btn-primary"  value="${message(code: 'default.button.update.label', default: '提交 ')}"/>
 </fieldset>
 </div>
 </g:form>

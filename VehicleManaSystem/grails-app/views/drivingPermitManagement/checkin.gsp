@@ -166,7 +166,7 @@
 	</dt>
 	<dd>
 		<div class="col-xs-8">
-		<g:select name="sex" from="${DrivingPermit.Sex.values()}" class="form-control" />
+		<g:select name="sex" from="${DrivingPermit.Sex.values()}" class="form-control" keys="${DrivingPermit.Sex.values()*.name()}" />
 		</div>
 	</dd>
 </dl>

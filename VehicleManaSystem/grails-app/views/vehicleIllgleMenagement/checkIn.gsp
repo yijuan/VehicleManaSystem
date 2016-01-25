@@ -17,7 +17,11 @@
 	</section>
 <div style="width:96%; margin-left:10%; ">
 <section class="content">
-
+<div style="margin-top:2px; margin-left:10%; font-size:22px; font-weight:bold; color:red;">
+<g:if test="${flash.message }">
+${flash.message }
+</g:if>
+</div>
 <dl class="dl-horizontal" style="margin-left:-80px;">
 	<dt>
 	<label for="branch">
@@ -35,11 +39,7 @@
 	</dd>
 	</g:form>
 </dl>
-<div style="margin-left:40%; font-size:22px; font-weight:bold; color:red;">
-<g:if test="${flash.message }">
-${flash.message }
-</g:if>
-</div>
+
 <g:uploadForm action="save">
 <dl class="dl-horizontal" style="margin-left:-80px;">
 	<dt>

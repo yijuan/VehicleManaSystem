@@ -74,7 +74,7 @@
 				<th><g:message code="drivingPermit.sex.label" default="性别"/></th>--%>
 				<th><g:message code="drivingPermit.dlicense.label" default="驾驶证"/></th>
 				<th><g:message code="drivingPermit.borrowNum.label" default="借车次数"/></th>
-				<th><g:message code="drivingPermit.dlligle.label" default="违章情况"/></th>
+				<th><g:message code="drivingPermit.numbIllgle.label" default="违章次数"/></th>
 				<%--<th><g:message code="drivingPermit.delay.label" default="是否延期"/></th>
 				<th><g:message code="drivingPermit.delayTo.label" default="延期时长"/></th>
 				--%><th><g:message code="drivingPermit.licensRevoked.label" default="是否吊销"/></th>
@@ -88,13 +88,9 @@
 				<td>${drivingPermit.dpNO }</td>
 				<td>${drivingPermit.name }</td>
 				<td><g:formatDate date="${drivingPermit.trainingDate }" format="yyyy-MM-dd"/></td>
-				<%--<td>${drivilicense.score }</td>--%>
 				<td>${drivingPermit.dlicense }</td>
-				<%--<td>${drivilicense.age }</td>
-				<td>${drivilicense.sex }</td>
-				<td>${drivilicense.dlicense }</td>--%>
 				<td>${drivingPermit.borrowNum }</td>
-				<td>${drivingPermit.dlligle }</td>
+				<td>${drivingPermit.numbIllgle }</td>
 				<%--<td><g:formatBoolean boolean="${drivilicense.delay }" /></td>
 				<td>${drivilicense.delayTo }</td>
 				--%><td><g:formatBoolean boolean="${drivingPermit.licensRevoked }" /></td>

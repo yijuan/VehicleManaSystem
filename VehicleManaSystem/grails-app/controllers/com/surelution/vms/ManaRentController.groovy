@@ -11,8 +11,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
  *
  */
 class ManaRentController {
-
-	static CommonsMultipartFile  photo
 	
     def index() { }
 	
@@ -37,9 +35,18 @@ class ManaRentController {
 		def enabled = params.enabled
 		
 		def image = new DynImage()
-		photo =  request.getFile("rentPhoto")
+		CommonsMultipartFile  photo =  request.getFile("rentPhoto")
+		def location = Holders.config.grails.dynImage.rootPath
+		def uuid = UUID.randomUUID().toString()
+		def picUrl = "${location}${uuid}"
+		println picUrl
+		
 		if(photo && !photo.empty){
-		savePic(image)
+			def name = photo.getOriginalFilename()
+			image.picUrl = picUrl
+			image.originPicName = name
+			image.save(flush:true)
+			photo.transferTo(new File(picUrl))
 		}
 		def vehicleSource = new RentVehicle()
 		vehicleSource.gotDate = gotDate
@@ -51,9 +58,18 @@ class ManaRentController {
 		vehicleSource.save(flush:true)
 		
 		def image1 = new DynImage()
-		photo =  request.getFile("vehiclePhoto")
-		if(photo && !photo.empty){
-		savePic(image1)
+		CommonsMultipartFile  photo1 =  request.getFile("vehiclePhoto")
+		def location1 = Holders.config.grails.dynImage.rootPath
+		def uuid1= UUID.randomUUID().toString()
+		def picUrl1 = "${location}${uuid}"
+		println picUrl
+		
+		if(photo1 && !photo1.empty){
+			def name = photo.getOriginalFilename()
+			image1.picUrl = picUrl
+			image1.originPicName = name
+			image1.save(flush:true)
+			photo1.transferTo(new File(picUrl))
 		}
 		def vehicle = new Vehicle()
 		vehicle.recordTime = recordTime
@@ -91,21 +107,6 @@ class ManaRentController {
 		vehicle.stopRent = stopRent
 		vehicle.save(flush:true)
 		redirect(action:'list',controller:'manaBuy')
-	}
-	
-	def static savePic(DynImage image){
-		def location = Holders.config.grails.dynImage.rootPath
-		def uuid = UUID.randomUUID().toString()
-		def picUrl = "${location}${uuid}"
-		println picUrl
-		
-		if(photo && !photo.empty){
-			def name = photo.getOriginalFilename()
-			image.picUrl = picUrl
-			image.originPicName = name
-			image.save(flush:true)
-			photo.transferTo(new File(picUrl))
-		}
 	}
 	
 	//显示公车图片的方法

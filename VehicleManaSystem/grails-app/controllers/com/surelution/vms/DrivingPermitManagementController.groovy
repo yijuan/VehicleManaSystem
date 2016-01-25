@@ -5,21 +5,42 @@ class DrivingPermitManagementController {
     def index() { }
 	
 	def DriviLicense(Integer max){
-		def dp;
-		def dpNO = params.dpNO
+		//准驾证管理
+		def dpList;
+		def vehicleIllgle = VehicleIllgle.list();
+		def dpNO = params.dpNO;
 		if(dpNO == null){
-			dp = DrivingPermit.list();
+			dpList = DrivingPermit.list();
+			for(def i=0; i<dpList.size(); i++){
+				def dp = dpList.get(i);
+				dp.numbIllgle = 0;
+				println dp
+				for(def j=0; j<vehicleIllgle.size(); j++){
+					def vI = vehicleIllgle.get(j);
+					if(vI.vehicleInUse != null && vI.vehicleInUse.drivingPermit != null && vI.vehicleInUse.drivingPermit.dpNO == dp.dpNO){
+						dp.numbIllgle++;
+						println dp.numbIllgle;
+					}
+				}
+			}
 		}
 		else{
-			dp = DrivingPermit.findByDpNO(dpNO);
-			if(dp == null){
+			dpList = DrivingPermit.findByDpNO(dpNO);
+			if(dpList == null){
 				flash.message = "无此准驾证，请核对后查询!";
 			}
 			else{
 				flash.message = "";
+				dpList.numbIllgle = 0;
+				for(def i=0; i<vehicleIllgle.size(); i++){
+					def vI = vehicleIllgle.get(i);
+					if(vI.vehicleInUse && vI.vehicleInUse.drivingPermit != null && vI.vehicleInUse.drivingPermit.dpNO == dpList.dpNO){
+						dpList.numbIllgle++;
+					}
+				}
 			}
 		}
-		[dp:dp]
+		[dpList:dpList]
 	}
 	
 	def checkin(){

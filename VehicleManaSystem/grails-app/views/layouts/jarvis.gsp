@@ -115,7 +115,7 @@
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
-					<!-- 一个导航链接开始 -->
+					<%--<!-- 一个导航链接开始 -->
 					<li class="treeview"><a href="#"><i class="fa  fa-hand-stop-o (alias)"></i>
 							<span>车辆维保</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
@@ -125,7 +125,7 @@
 			               <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">维修完结</g:link></li>     
 						   <li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">年检登记</g:link></li>
 							<li><a href="#" style="float:left;"><i class="fa fa-circle-thin"></i></a><g:link controller="salesOrder" action="changeFMstatusOpen">年检查询</g:link></li>
-						</ul>
+						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
 					<!-- 一个导航链接开始 -->
@@ -141,7 +141,7 @@
 						</ul></li>
 					<!-- 一个导航链接结束 -->
 					
-					<!-- 一个导航链接开始 -->
+					--%><!-- 一个导航链接开始 -->
 					<li class="treeview"><a href="#"><i class="fa fa-share"></i>
 							<span>行车违章</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">												          

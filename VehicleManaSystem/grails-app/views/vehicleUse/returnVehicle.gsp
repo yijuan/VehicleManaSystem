@@ -67,8 +67,8 @@
                             <td>${vehicleInUse.drivingPermit.name }</td>
                             <td>${vehicleInUse.vehicle.vehicleBrand }</td>
                             <td>${vehicleInUse.vehicle.vehicleNO }</td>
-                            <td><g:formatDate date="${vehicleInUse.borrowTime}" format="yyyy-MM-dd hh:mm"/></td>
-                            <td><g:formatDate date="${vehicleInUse.expectReturnTime }" format="yyyy-MM-dd hh:mm"/></td>
+                            <td><g:formatDate date="${vehicleInUse.borrowTime}" format="yyyy-MM-dd HH:mm"/></td>
+                            <td><g:formatDate date="${vehicleInUse.expectReturnTime }" format="yyyy-MM-dd HH:mm"/></td>
                             <td>
                             <g:if test="${vehicleInUse?.isReturn==false}">
                                <a href="${createLink(action:'showDetails',id:vehicleInUse.id,params:['excepectReturnTime':vehicleInUse.expectReturnTime,'borrowTime':vehicleInUse.borrowTime])}" rel="external" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#customerModal">还车</a>

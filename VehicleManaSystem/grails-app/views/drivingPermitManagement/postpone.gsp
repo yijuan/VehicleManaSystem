@@ -70,11 +70,12 @@
 				<th><g:message code="drivingPermit.name.label" default="驾驶员"/></th>
 				<th><g:message code="drivingPermit.trainingDate.label" default="培训日期"/></th>
 				<th><g:message code="drivingPermit.dlicense.label" default="驾驶证"/></th>
-				<th><g:message code="drivingPermit.borrowNum.label" default="借车次数"/></th>
 				<th><g:message code="drivingPermit.description.label" default="描述"/></th><%--
 				<th><g:message code="drivingPermit.licensRevoked.label" default="是否吊销"/></th>
-				<th><g:message code="drivingPermit.revokedate.label" default="吊销日期"/></th>
-				--%><th><g:message code="drivingPermit.delay.label" default="是否延期"/></th>
+				<th><g:message code="drivingPermit.revokedate.label" default="吊销日期"/></th>--%>
+				<th><g:message code="drivingPermit.borrowNum.label" default="借车次数"/></th>
+				<th><g:message code="drivingPermit.numbIllgle.label" default="违章次数"/></th>
+				<th><g:message code="drivingPermit.delay.label" default="是否延期"/></th>
 				<th><g:message code="drivingPermit.delayTo.label" default="延期时长"/></th>
 				<th>延期操作</th>
 			</tr>
@@ -86,8 +87,9 @@
 				<td>${drivingPermit.name }</td>
 				<td><g:formatDate date="${drivingPermit.trainingDate }" format="yyyy-MM-dd"/></td>
 				<td>${drivingPermit.dlicense }</td>
-				<td>${drivingPermit.borrowNum}</td>
 				<td>${drivingPermit.description}</td>
+				<td>${drivingPermit.borrowNum}</td>
+				<td>${drivingPermit.numbIllgle}</td>
 				<%--<td><g:formatBoolean boolean="${drivilicense.licensRevoked }" /></td>
 				<td>${drivilicense.revokeDate }</td>
 				--%><td><g:formatBoolean boolean="${drivingPermit.delay }" /></td>

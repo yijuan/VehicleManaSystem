@@ -14,9 +14,7 @@ import grails.util.Holders;
  *
  */
 class VehicleUseController {
-	static CommonsMultipartFile  photo
-	
-	def flag
+	//static CommonsMultipartFile  photo
 	
 	def user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -173,16 +171,26 @@ class VehicleUseController {
 		if(dp==null || dp.licensRevoked==true || dp.enabled==false){
 			render false
 		}else if(dp.delay==true && dp.delayTo<new Date()){
+			render false
+		}else{
+		   render dp.collect(){['id':dp.id,'name':dp.name,'dlicense':dp.dlicense,'dpNO':dp.dpNO,'enabled':dp.enabled?"正常":""]} as JSON
+		
+		   }
+		
+		//render (['status':(!dp || dp.licensRevoked || !dp.enabled || dp.delay && dp.delayTo<new Date())]) as JSON
+//		if(!dp || dp.licensRevoked || !dp.enabled){
+//			render (['status':!dp || dp.licensRevoked || !dp.enabled]) as JSON
+////			render false
+//		}else 
+	/*if(dp.delay && dp.delayTo<new Date()){
 		    render false
 		}else{
-		   if(dp.enabled==true){
-			   flag = "正常"
-		   }
-	       render dp.collect(){['id':dp.id,'name':dp.name,'dlicense':dp.dlicense,'dpNO':dp.dpNO,'enabled':flag]} as JSON
-		}
+	       render dp.collect(){[status:true, 'id':dp.id,'name':dp.name,'dlicense':dp.dlicense,'dpNO':dp.dpNO,'enabled':dp.enabled?"正常":""]} as JSON
+		}*/
+		
 	}
 	//保存图片的方法
-	def static savePic(DynImage image){
+	/*def static savePic(DynImage image){
 		def location = Holders.config.grails.dynImage.rootPath
 		def uuid = UUID.randomUUID().toString()
 		def picUrl = "${location}${uuid}"
@@ -195,10 +203,10 @@ class VehicleUseController {
 			image.save(flush:true)
 			photo.transferTo(new File(picUrl))
 		}
-	}
+	}*/
 	
 	//显示接车里程数照片
-	def showReceivePic(long id){
+	/*def showReceivePic(long id){
 		def vehicleInUse = VehicleInUse.get(id)
 		def pc = vehicleInUse.receivePic
 		def picUrl = pc.picUrl
@@ -207,10 +215,10 @@ class VehicleUseController {
 		os << file.bytes
 		os.flush()
 		return
-	}
+	}*/
 	
 	//显示交车里程数照片
-	def showReturnPic(long id){
+	/*def showReturnPic(long id){
 		def vehicleInUse = VehicleInUse.get(id)
 		def pc = vehicleInUse.returnPic
 		def picUrl = pc.picUrl
@@ -219,5 +227,5 @@ class VehicleUseController {
 		os << file.bytes
 		os.flush()
 		return
-	}
+	}*/
 }

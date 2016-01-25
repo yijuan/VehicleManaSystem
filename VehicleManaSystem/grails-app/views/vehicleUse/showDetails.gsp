@@ -4,19 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <title>车辆归还情况</title>
-<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
 <script type="text/javascript">
      function show(){
         var returnTime = $(".rl").val();
-        var excepctReturnTime = $("#vehicleInUse").val();
-        var borrowTime = $("#borrowTime").val();
-        var return1 = new Date(returnTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
-        var excepctReturn = new Date(excepctReturnTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
-        var borrow = new Date(borrowTime.replace(" ", "T").replace("-", "/").replace("-", "/"));
+        var excepctReturnTime = $(".excepctReturnTime").val();
+        var borrowTime = $(".borrowTime").val();
+        var return1 = new Date(returnTime.replace(" ", "T").replace(".", "-").replace(".", "-")+":00");
+        var excepctReturn =new Date(excepctReturnTime);
+        var borrow = new Date(borrowTime);
         if(return1>excepctReturn){
              $("#isDelay").css("display","block");
              $("#delay").attr("checked",true);
-            }
+            }else{
+            	$("#isDelay").css("display","none");
+                $("#delay").attr("display","none"); 
+                }
         if(return1<borrow){
                 $("#messages").html("实际还车时间不能小于借车时间")
         	    $("#sub").prop('disabled', true);
@@ -46,7 +48,6 @@
         </div>
         <g:uploadForm action="sendVehicle" method="post">
         
-        <input type="hidden" value="${params.borrowTime}" id="borrowTime"/>
 		<div class="modal-body">
 		  <dl class="dl-horizontal">
 						<dt>
@@ -62,7 +63,7 @@
 								<script type="text/javascript">
 									$('#datetimepicker').datetimepicker({
 										isRTL : false,
-										format : 'yyyy.mm.dd HH:ii',
+										format : 'yyyy.mm.dd hh:ii',
 										autoclose : true,
 										minView : 'hour',
 										language : 'zh-CN'
@@ -83,7 +84,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<input type="text" class="form-control" name="receiveMile" id="receiveMile" required=""/>
+								<input type="text" class="form-control" name="receiveMile" id="receiveMile" required/>
 							</div>
 						</dd>
 					</dl>
@@ -96,7 +97,7 @@
 						</dt>
 						<dd>
 							<div class="col-xs-8">
-								<input type="text" name="returnMile" class="form-control" id="returnMile" onchange="check()" required=""/>
+								<input type="text" name="returnMile" class="form-control" id="returnMile" onchange="check()" required/>
 							    <span id="mess" style="color:red;"></span>
 							</div>
 						</dd>
@@ -146,7 +147,9 @@
 					</dl>
 					</div>
 					<input type="hidden" name="vehicleInUseId" value="${params.id}"/>
-		            <input type="hidden" name="vehicleInUse" id="vehicleInUse" value="${params.excepectReturnTime}"/>
+		            <input type="hidden" name="vehicleInUse" class="excepctReturnTime" value="${params.excepectReturnTime}"/>
+		           
+		            <input type="hidden" name="borrowTime" class="borrowTime" value="${params.borrowTime}"/>
 		 </div>	
 		 <div class="modal-footer">		
 				<fieldset class="buttons">
